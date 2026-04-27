@@ -8,7 +8,11 @@ export default function NavBar() {
   return (
     <div>
       <div className="flex justify-between p-2">
-        <h1 className="text-3xl">Brand</h1>
+        <h1 className="text-xl">
+          <Link to="/">
+            Brand
+          </Link>
+        </h1>
         {user ? (
           <div className="max-sm:hidden flex gap-4 text-xl">
             <button>Bookings</button>
@@ -58,12 +62,28 @@ export default function NavBar() {
         className="pt-12"
       >
         <button className="font-extrabold fixed right-3 top-3" onClick={() => setIsOpen(false)}>X</button>
-        <div className="flex flex-col gap-4 items-start m-4">
-          <h1>Menu</h1>
-          <button>Profile</button>
-          <button>Bookings</button>
-          <button>Services</button>
-        </div>
+        {user ? (
+          <div className="flex flex-col gap-4 items-start m-4">
+            <h1>Menu</h1>
+            <Link to="/profile">
+              <button>Profile</button>
+            </Link>
+            <button>Bookings</button>
+            <button>Services</button>
+            {user.role === 'admin' && (
+              <Link to="/admin">
+                <button>Admin panel</button>
+              </Link>
+            )}
+          </div>
+        ) : (
+          <div className="flex flex-col gap-4 items-start m-4">
+            <h1>Menu</h1>
+            <Link to="/auth">
+              <button>Log In</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div >
   )

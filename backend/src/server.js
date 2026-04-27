@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import userRoutes from "./routes/userRoutes.js"
+import servicesRoutes from "./routes/servicesRoutes.js"
 import { connectDB } from "./config/db.js"
 
 dotenv.config()
@@ -15,6 +16,7 @@ app.use(cors({
 }))
 
 app.use('/api/user', userRoutes)
+app.use('/api/service', servicesRoutes)
 app.use('*splat', (req, res) => {
   res.status(404).json({ message: 'Page not found' })
 })
