@@ -5,7 +5,6 @@ const providerSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
     },
     services: [String],
     location: String,
