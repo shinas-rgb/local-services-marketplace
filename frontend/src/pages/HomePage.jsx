@@ -8,17 +8,19 @@ import tap from "../assets/images/tap-faucet-svgrepo-com.svg"
 import taxi from "../assets/images/taxi-svgrepo-com.svg"
 import { useEffect, useState } from "react";
 import api from "../api/api.js"
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true)
   const [services, setServices] = useState([])
+  const images = { Plumbing: tap, Painting: brush, Repair: clamp, Electrical: wrench, Cleaning: cleaning, Taxi: taxi }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await api.get('/service/all')
-        setServices(res.data)
-        console.log(res.data)
+        const serviceRes = await api.get('/service/all')
+        setServices(serviceRes.data)
+
       } catch (error) {
         const message = error.response?.data?.message || "Something went wrong"
         console.log(message)
@@ -28,6 +30,10 @@ export default function HomePage() {
     }
     fetchData()
   }, [])
+
+  function setImage(name) {
+    return images[name]
+  }
 
   if (loading) {
     return <div className="flex justify-center text-xl items-center h-screen">
@@ -48,42 +54,21 @@ export default function HomePage() {
           <div className="flex justify-between">
             <h1 className="font-bold">Categories</h1>
             <button>
-              <h1 className="text-gray-500 hover:text-gray-700">View all</h1>
+              <Link to="/all-services">
+                <h1 className="text-gray-500 hover:text-gray-700">View all</h1>
+              </Link>
             </button>
           </div>
-          <div>
-            <div className="grid grid-cols-3 gap-2">
-              <div className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={clamp} alt="" />
-                <p className="font-bold text-gray-700">Electric</p>
+          <div className="grid grid-cols-3 gap-2">
+            {services.map((service) => (
+              <div key={service._id} className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
+                <Link to={`/${service.name}`}>
+                  <img className="object-cover h-15"
+                    src={setImage(service.name)} alt="" />
+                  <p className="font-bold text-gray-700">{service.name}</p>
+                </Link>
               </div>
-              <div className="bg-blue-100  text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={brush} alt="" />
-                <p className="font-bold text-gray-700">Painting</p>
-              </div>
-              <div className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={wrench} alt="" />
-                <p className="font-bold text-gray-700">Repair</p>
-              </div>
-              <div className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={cleaning} alt="" />
-                <p className="font-bold text-gray-700">Cleaning</p>
-              </div>
-              <div className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={tap} alt="" />
-                <p className="font-bold text-gray-700">Plumbing</p>
-              </div>
-              <div className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <img className="object-cover h-15"
-                  src={taxi} alt="" />
-                <p className="font-bold text-gray-700">Taxi</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div >

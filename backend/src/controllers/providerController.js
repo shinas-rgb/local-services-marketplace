@@ -22,6 +22,18 @@ export async function getAllProviders(req, res) {
   }
 }
 
+export async function getProviderById(req, res) {
+  try {
+    const id = req.params.id
+    const provider = await Providers.findOne({ userId: id })
+    if (!provider) return res.status(404).json({ message: "Provider not found" })
+    res.status(200).json(provider)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
 export async function getProviderByService(req, res) {
   try {
     const name = req.params.name
@@ -33,6 +45,34 @@ export async function getProviderByService(req, res) {
     })
     if (!providers) return res.status(404).json({ message: "Provider not found" })
     res.status(200).json(providers)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export async function updateProvider(req, res) {
+  try {
+    const { id, name, services, location, availability, image } = req.body
+    const updatedProvider = await Providers.findByIdAndUpdate(id, {
+      services, name, location, availability, image
+    }, { new: true })
+    res.status(200).json({ message: "Profile updated", updatedProvider })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export async function rateProvider(req, res) {
+  try {
+    const { id, rate } = req.body
+    const updated = await Providers.findByIdAndUpdate(id, { $inc: { ratingCount: 1 } }, { returnDocument: "after" })
+
+    const avg = (rate + updated.rating) / updated.ratingCount
+    updated.rating = avg
+    await updated.save()
+    res.status(200).json({ message: "Rate updated", updated })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error.message })

@@ -76,3 +76,16 @@ export async function updateRole(req, res) {
     res.status(500).json({ message: error.message })
   }
 }
+
+export async function updateUser(req, res) {
+  try {
+    const { id, name, phone } = req.body
+    const updatedUser = await User.findByIdAndUpdate(id, {
+      name, phone
+    }, { new: true })
+    res.status(201).json({ message: "Profile updated", updatedUser })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}

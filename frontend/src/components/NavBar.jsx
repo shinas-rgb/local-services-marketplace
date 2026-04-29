@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false)
   const user = checkUser()
+
   return (
     <div>
       <div className="flex justify-between p-2">
@@ -15,8 +16,12 @@ export default function NavBar() {
         </h1>
         {user ? (
           <div className="max-sm:hidden flex gap-4 text-xl">
-            <button>Bookings</button>
-            <button>Services</button>
+            <Link to="/bookings">
+              <button>Bookings</button>
+            </Link>
+            <Link to="/all-services">
+              <button>Services</button>
+            </Link>
             <Link to="/profile">
               <button>Profile</button>
             </Link>
@@ -68,8 +73,12 @@ export default function NavBar() {
             <Link to="/profile">
               <button>Profile</button>
             </Link>
-            <button>Bookings</button>
-            <button>Services</button>
+            <Link to="/bookings">
+              <button>Bookings</button>
+            </Link>
+            <Link to="all-services">
+              <button>Services</button>
+            </Link>
             {user.role === 'admin' && (
               <Link to="/admin">
                 <button>Admin panel</button>

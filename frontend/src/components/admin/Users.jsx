@@ -51,7 +51,9 @@ export default function Users() {
           <tbody>
             {users.map((user) => (
               <tr className="border">
-                <td className="py-3 px-4 border">{user.name}</td>
+                <td className="py-3 px-4 border">
+                    {user.name}
+                </td>
                 <td className="py-3 px-4 border">{user.phone}</td>
                 <td className="py-3 px-4 border">{user.role}</td>
               </tr>
