@@ -28,7 +28,7 @@ export default function NavBar() {
           </div>
         ) : (
           <div className="max-sm:hidden text-xl">
-            <Link to="auth">
+            <Link to="/auth">
               <button>Login</button>
             </Link>
           </div>
@@ -76,7 +76,7 @@ export default function NavBar() {
             <Link to="/bookings">
               <button>Bookings</button>
             </Link>
-            <Link to="all-services">
+            <Link to="/all-services">
               <button>Services</button>
             </Link>
             {user.role === 'admin' && (

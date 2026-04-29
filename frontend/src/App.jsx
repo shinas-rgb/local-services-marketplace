@@ -17,6 +17,8 @@ import Profile from './components/profile/Profile'
 import MyBookings from './components/profile/MyBookings'
 import AllServicesPage from './pages/AllServicesPage'
 import Bookings from './components/admin/Bookings'
+import SearchPage from './pages/SearchPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 function App() {
 
@@ -38,12 +40,14 @@ function App() {
         <Route path='bookings' element={<BookingsPage />} />
       </Route>
       <Route path='/' element={<HomePage />} />
-      <Route path='/:name' element={<ServicePage />} >
+      <Route path='service/:name' element={<ServicePage />} >
         <Route index element={<Service />} />
         <Route path=':id' element={<ProviderPage />} />
       </Route>
       <Route path='/auth' element={<AuthPage />} />
-      <Route path='all-services' element={<AllServicesPage />} />
+      <Route path='/all-services' element={<AllServicesPage />} />
+      <Route path='/search' element={<SearchPage />} />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
 }

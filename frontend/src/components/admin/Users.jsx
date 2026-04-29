@@ -7,21 +7,25 @@ import { Link } from "react-router-dom"
 export default function Users() {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [role, setRole] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
-        const res = await api.get('/user/all')
+        const res = await api.get(`/user/all`, {
+          params: role ? { role } : {}
+        })
         setUsers(res.data)
       } catch (error) {
         const message = error.response?.data?.message || "Something went wrong"
-        toast.error(message)
+        console.error(message)
       } finally {
         setLoading(false)
       }
     }
     fetchData()
-  }, [])
+  }, [role])
 
   if (loading) {
     return <div className="flex justify-center items-center text-center">
@@ -39,6 +43,14 @@ export default function Users() {
       <div className="flex justify-center">
         <h1 className="text-2xl">Users</h1>
       </div>
+      <div className="bg-gray-600 w-fit py-1 px-2 my-2 text-white">
+        <select value={role} onChange={(e) => setRole(e.target.value)}>
+          <option value="">All Users</option>
+          <option value="user">Users</option>
+          <option value="provider">Providers</option>
+          <option value="admin">Admins</option>
+        </select>
+      </div>
       <div>
         <table className="table-auto text-left border">
           <thead>
@@ -49,10 +61,10 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr className="border">
+            {users?.map((user) => (
+              <tr key={user._id} className="border">
                 <td className="py-3 px-4 border">
-                    {user.name}
+                  {user.name}
                 </td>
                 <td className="py-3 px-4 border">{user.phone}</td>
                 <td className="py-3 px-4 border">{user.role}</td>

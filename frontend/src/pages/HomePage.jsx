@@ -41,7 +41,7 @@ export default function HomePage() {
     </div>
   }
   return (
-    <div className="p-2">
+    <div className="mx-2">
       <NavBar />
       <SearchBar />
       <div className="px-2">
@@ -62,7 +62,7 @@ export default function HomePage() {
           <div className="grid grid-cols-3 gap-2">
             {services.map((service) => (
               <div key={service._id} className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
-                <Link to={`/${service.name}`}>
+                <Link to={`/service/${service.name}`}>
                   <img className="object-cover h-15"
                     src={setImage(service.name)} alt="" />
                   <p className="font-bold text-gray-700">{service.name}</p>

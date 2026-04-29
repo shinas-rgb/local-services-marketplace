@@ -25,8 +25,6 @@ export default function ProviderPage() {
 
         const serviceRes = await api.get(`/service/${name}`)
         setService(serviceRes.data)
-        console.log(user.id)
-        console.log(providerRes.data.userId)
       } catch (error) {
         const message = error.response?.data?.message || "Something went wrong"
         console.log(message)

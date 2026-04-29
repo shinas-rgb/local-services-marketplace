@@ -14,15 +14,16 @@ export default function Admin() {
               Users
             </Link>
           </button>
-          <button>Providers</button>
           <button>
             <Link to="services">
               Services
             </Link>
           </button>
-          <button>Bookings</button>
+          <Link to="bookings">
+            <button>Bookings</button>
+          </Link>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

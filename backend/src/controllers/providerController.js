@@ -14,7 +14,20 @@ export async function CreateProvider(req, res) {
 
 export async function getAllProviders(req, res) {
   try {
-    const providers = await Providers.find()
+    const query = req.query?.q
+    const available = req.query?.available
+    let search = {}
+    if (query) {
+      search.name = {
+        $regex: query, $options: "i"
+      }
+    }
+    if (available) {
+      search.availability = {
+        $regex: "Any time", $options: "i"
+      }
+    }
+    const providers = await Providers.find(search)
     res.status(200).json(providers)
   } catch (error) {
     console.log(error)

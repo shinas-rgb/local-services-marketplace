@@ -13,6 +13,17 @@ export async function CreateBooking(req, res) {
   }
 }
 
+export async function getAllBookings(req, res) {
+  try {
+    const status = req.query?.status?.toLowerCase()
+    const filter = status ? { status } : {}
+    const bookings = await Bookings.find(filter)
+    res.status(200).json(bookings)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
 export async function getBookingByUserId(req, res) {
   try {
     const id = req.params.id

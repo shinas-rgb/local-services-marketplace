@@ -46,7 +46,9 @@ export async function loginUser(req, res) {
 
 export async function getAllUsers(req, res) {
   try {
-    const users = await User.find()
+    const role = req.query.role?.toLowerCase()
+    const filter = role ? { role } : {}
+    const users = await User.find(filter)
     res.status(200).json(users)
   } catch (error) {
     console.log(error)
