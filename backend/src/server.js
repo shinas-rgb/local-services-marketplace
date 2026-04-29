@@ -15,7 +15,10 @@ connectDB()
 
 app.use(express.json())
 app.use(cors({
-  origin: "http://localhost:5173"
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 app.use('/api/user', userRoutes)
