@@ -62,7 +62,7 @@ export default function ProviderPage() {
   return (
     <div className="mx-2">
       <div>
-        <Link to={`/${name}`} className="flex gap-1">
+        <Link to={`/service/${name}`} className="flex gap-1">
           <img className="h-6" src={arrow} alt="" />
           <h1>Back</h1>
         </Link>
