@@ -9,7 +9,7 @@ export default function NavBar() {
   return (
     <div>
       <div className="flex justify-between p-2">
-        <h1 className="text-xl">
+        <h1 className="text-2xl">
           <Link to="/">
             Brand
           </Link>
