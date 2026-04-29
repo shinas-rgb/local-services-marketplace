@@ -44,7 +44,7 @@ export default function AllServicesPage() {
       {services.length > 0 && (
         <div className="flex flex-col gap-2">
           {services.map((service) => (
-            <Link key={service._id} to={`/${service.name}`}>
+            <Link key={service._id} to={`/service/${service.name}`}>
               <div className="bg-blue-100 flex border-2 py-4 px-4 items-center justify-around hover:cursor-pointer hover:bg-blue-200">
                 <p className="font-bold text-gray-700">{service.name}</p>
                 <img className="object-cover h-15"
