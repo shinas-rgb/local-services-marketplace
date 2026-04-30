@@ -8,8 +8,8 @@ import { checkUser } from "../../utils/Auth";
 import toast from "react-hot-toast";
 
 export default function ProviderPage() {
-  const { name } = useParams()
-  const { id } = useParams()
+  const { name, id } = useParams()
+  console.log(name, id)
   const [loading, setLoading] = useState(true)
   const [provider, setProvider] = useState(null)
   const [service, setService] = useState(null)
@@ -18,6 +18,7 @@ export default function ProviderPage() {
   const user = checkUser()
 
   useEffect(() => {
+    if (!id || !name) return
     const fetchData = async () => {
       try {
         const providerRes = await api.get(`/provider/${id}`)
@@ -33,7 +34,7 @@ export default function ProviderPage() {
       }
     }
     fetchData()
-  }, [])
+  }, [id, name])
 
   async function bookService(data) {
     try {
