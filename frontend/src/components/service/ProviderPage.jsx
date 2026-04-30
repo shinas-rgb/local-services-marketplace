@@ -6,6 +6,7 @@ import Overlay from "../Overlay";
 import { useForm } from "react-hook-form";
 import { checkUser } from "../../utils/Auth";
 import toast from "react-hot-toast";
+import NavBar from "../NavBar";
 
 export default function ProviderPage() {
   const { name, id } = useParams()
@@ -67,8 +68,11 @@ export default function ProviderPage() {
   }
   return (
     <div className="mx-2">
+      {!name && (
+        <NavBar />
+      )}
       <div>
-        <Link to={name ? `/service/${name}` : `/`} className="flex gap-1">
+        <Link to={name ? `/service/${name}` : `/search`} className="flex gap-1">
           <img className="h-6" src={arrow} alt="" />
           <h1>Back</h1>
         </Link>
