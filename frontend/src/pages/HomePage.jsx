@@ -47,7 +47,7 @@ export default function HomePage() {
       <div className="px-2">
         <div className="my-4 flex flex-col gap-2">
           <div className="w-full flex justify-center">
-            <h1 className="title-gradient text-2xl w-3/4 text-center  text-white rounded-2xl p-2 font-bold">Find Trusted Services Near You</h1>
+            <h1 className="title-gradient text-2xl w-3/4 sm:w-1/4 sm:py-6 sm:my-2 text-center  text-white rounded-2xl p-2 font-bold">Find Trusted Services Near You</h1>
           </div>
         </div>
         <div className="my-4 flex flex-col gap-2">
@@ -59,7 +59,7 @@ export default function HomePage() {
               </Link>
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {services.map((service) => (
               <div key={service._id} className="bg-blue-100 text-center border-2 py-1 px-4 hover:cursor-pointer hover:bg-blue-200">
                 <Link to={`/service/${service.name}`}>

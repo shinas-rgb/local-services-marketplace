@@ -96,11 +96,11 @@ export default function ProviderPage() {
           </form>
         </div>
       </Overlay>
-      <div className="bg-violet-500 rounded-xl py-4 my-4 px-4 text-white">
+      <div className="bg-violet-500 rounded-xl sm:flex sm:flex-col sm:w-fit sm:gap-4 py-4 my-4 px-4 text-white">
         <div className=" ml-4">
           <h1 className="text-xl font-bold">{provider.name}</h1>
         </div>
-        <div>
+        <div className="sm:flex sm:flex-col sm:gap-4">
           <div className="flex justify-center">
             <img src={provider.image.url} alt="" className="h-32" />
           </div>
@@ -108,7 +108,7 @@ export default function ProviderPage() {
             <h2 className="font-bold">All Services:</h2>
             <ul className="ml-2">
               {provider.services.map((service) => (
-                <li>{service}</li>
+                <li key={service}>{service}</li>
               ))}
             </ul>
           </div>

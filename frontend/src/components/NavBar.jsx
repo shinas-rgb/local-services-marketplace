@@ -15,7 +15,7 @@ export default function NavBar() {
           </Link>
         </h1>
         {user ? (
-          <div className="max-sm:hidden flex gap-4 text-xl">
+          <div className="max-sm:hidden flex gap-4">
             <Link to="/bookings">
               <button>Bookings</button>
             </Link>

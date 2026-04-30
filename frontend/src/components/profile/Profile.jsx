@@ -273,10 +273,13 @@ export default function Profile() {
       <div className="flex justify-center my-2">
         <h1 className="text-xl">Profile</h1>
       </div>
+      <div>
+        <h1 className="text-2xl">Hey {user.name}</h1>
+      </div>
       {user.role === 'provider' && (
         <div className="flex flex-col my-2">
           <Link to="upcoming-services">
-            <button className=" px-2 py-1 w-full rounded-xl border">Your Bookings</button>
+            <button className=" px-2 py-1 w-full rounded-xl border sm:w-fit">Your Bookings</button>
           </Link>
         </div>
       )
@@ -286,10 +289,10 @@ export default function Profile() {
           className="underline text-blue-600 hover:cursor-pointer hover:text-blue-500">Are you a service Provider ?</a>
       )}
       <div className="flex flex-col my-2">
-        <button className="bg-gray-400 text-white px-2 py-1 rounded-xl hover:bg-gray-500" onClick={() => setEdit(true)}>Edit Profile</button>
+        <button className="bg-gray-400 text-white px-2 py-1 rounded-xl sm:w-fit hover:bg-gray-500" onClick={() => setEdit(true)}>Edit Profile</button>
       </div>
       <div className="flex flex-col gap-4">
-        <button className="bg-red-400 text-white px-2 py-1 rounded-xl hover:bg-red-500" onClick={logout}>Log Out</button>
+        <button className="bg-red-400 text-white px-2 py-1 rounded-xl sm:w-fit hover:bg-red-500" onClick={logout}>Log Out</button>
       </div>
     </div >
   )

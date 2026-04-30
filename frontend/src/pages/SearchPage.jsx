@@ -38,7 +38,7 @@ export default function SearchPage() {
       <NavBar />
       <SearchBar />
       {providers.length > 0 ? (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col sm:grid sm:grid-cols-4 sm:mt-8 gap-2">
           {providers.map((provider) => (
             <div key={provider._id} >
               <Link key={provider._id} to={`/${provider.name}`}>

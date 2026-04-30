@@ -6,7 +6,7 @@ import { protect } from "../middleware/authMiddleware.js"
 const router = express.Router()
 
 router.post('/', protect, CreateProvider)
-router.get('/all', protect, adminOnly, getAllProviders)
+router.get('/all', getAllProviders)
 router.get('/service/:name', getProviderByService)
 router.get('/:id', getProviderById)
 router.put('/', protect, updateProvider)

@@ -79,7 +79,7 @@ export default function BookingsPage() {
         <h1 className="text-xl font-bold">Your Bookings</h1>
       </div>
       {bookings.length > 0 ? (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:mt-8">
           {bookings.map((booking) => (
             <div className="bg-gray-800 text-white p-2" key={booking._id}>
               <div className="flex gap-1">

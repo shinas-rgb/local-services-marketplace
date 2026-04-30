@@ -42,7 +42,7 @@ export default function AllServicesPage() {
         <h1 className="text-2xl font-bold">All Services</h1>
       </div>
       {services.length > 0 && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:mt-8">
           {services.map((service) => (
             <Link key={service._id} to={`/service/${service.name}`}>
               <div className="bg-blue-100 flex border-2 py-4 px-4 items-center justify-around hover:cursor-pointer hover:bg-blue-200">
