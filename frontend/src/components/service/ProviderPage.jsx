@@ -128,7 +128,7 @@ export default function ProviderPage() {
           </div>
         </div>
       </div>
-      {user.id !== provider.userId && (
+      {user && user.id !== provider.userId && (
         <div>
           <button onClick={() => setOpen(true)}
             className="font-bold hover:cursor-pointer hover:text-gray-700 border py-1 px-2 rounded-xl">
