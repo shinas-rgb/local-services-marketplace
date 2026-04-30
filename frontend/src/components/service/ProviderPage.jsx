@@ -16,6 +16,7 @@ export default function ProviderPage() {
   const [open, setOpen] = useState(false)
   const { register, handleSubmit } = useForm()
   const user = checkUser()
+  console.log(user)
 
   useEffect(() => {
     if (!id || !name) return
