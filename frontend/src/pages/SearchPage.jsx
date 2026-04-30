@@ -41,7 +41,7 @@ export default function SearchPage() {
         <div className="flex flex-col sm:grid sm:grid-cols-4 sm:mt-8 gap-2">
           {providers.map((provider) => (
             <div key={provider._id} >
-              <Link key={provider._id} to={`/${provider.name}`}>
+              <Link key={provider._id} to={`/${provider._id}`}>
                 <div className="w-full border-2 border-violet-700 hover:bg-violet-500 bg-violet-600 text-white px-2 py-2 flex justify-between">
                   <div>
                     <h1 className="font-bold text-xl">{provider.name}</h1>

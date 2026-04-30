@@ -9,14 +9,12 @@ import toast from "react-hot-toast";
 
 export default function ProviderPage() {
   const { name, id } = useParams()
-  console.log(name, id)
   const [loading, setLoading] = useState(true)
   const [provider, setProvider] = useState(null)
   const [service, setService] = useState(null)
   const [open, setOpen] = useState(false)
   const { register, handleSubmit } = useForm()
   const user = checkUser()
-  console.log(user)
 
   useEffect(() => {
     if (!id || !name) return

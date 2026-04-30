@@ -47,6 +47,7 @@ function App() {
       <Route path='/auth' element={<AuthPage />} />
       <Route path='/all-services' element={<AllServicesPage />} />
       <Route path='/search' element={<SearchPage />} />
+      <Route path='/:id' element={<ProviderPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
