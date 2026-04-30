@@ -17,14 +17,16 @@ export default function ProviderPage() {
   const user = checkUser()
 
   useEffect(() => {
-    if (!id || !name) return
+    if (!id) return
     const fetchData = async () => {
       try {
         const providerRes = await api.get(`/provider/${id}`)
         setProvider(providerRes.data)
 
-        const serviceRes = await api.get(`/service/${name}`)
-        setService(serviceRes.data)
+        if (name) {
+          const serviceRes = await api.get(`/service/${name}`)
+          setService(serviceRes.data)
+        }
       } catch (error) {
         const message = error.response?.data?.message || "Something went wrong"
         console.log(message)
@@ -33,10 +35,14 @@ export default function ProviderPage() {
       }
     }
     fetchData()
-  }, [id, name])
+  }, [id])
 
   async function bookService(data) {
     try {
+      if (!name) {
+        const serviceRes = await api.get(`/service/${data.service}`)
+        setService(serviceRes.data)
+      }
       const res = await api.post('/booking', {
         userId: user.id,
         providerId: provider._id,
@@ -74,6 +80,13 @@ export default function ProviderPage() {
           </div>
           <form onSubmit={handleSubmit(bookService)}>
             <div className="flex flex-col gap-2">
+              {!name && (
+                <div className="flex gap-2">
+                  <label>Service:</label>
+                  <input type="text" placeholder="service" {...register("service")}
+                    className="border pl-2 w-full" />
+                </div>
+              )}
               <div className="flex gap-2">
                 <label>Time:</label>
                 <input type="text" placeholder="scheduled time" {...register("time")}
